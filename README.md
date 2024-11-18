@@ -3,7 +3,7 @@
 This guide explains how to install NixOS on a Contabo VPS using BTRFS subvolumes
 and a proper partition scheme.
 
-Although this guide can be used on any distant machine, it heavily suppose you
+Although this guide can be used on any distant machine, it heavily supposes you
 have access to a Rescue System, i.e. that you can boot an OS on your VPS without
 using its main drive (e.g. `/dev/sda` in the current template).
 
