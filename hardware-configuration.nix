@@ -20,7 +20,6 @@
     
     kernelModules = [ ];
     extraModulePackages = [ ];
-    tmp.cleanOnBoot = true;
   };
 
   fileSystems = {
