@@ -14,6 +14,11 @@ Contabo's control panel) before beginning this installation. This is necessary
 because we need to completely reformat /dev/sda, which is impossible while the
 system is running from it.
 
+It's not possible on your current cloud provider? See alternative methods:
+
+- [nixos-anywhere](https://github.com/nix-community/nixos-anywhere),
+- [nixos-infect](https://github.com/elitak/nixos-infect).
+
 ## Partition Scheme
 
 The installation uses the following partition layout:
