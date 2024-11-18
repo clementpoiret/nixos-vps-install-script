@@ -88,7 +88,7 @@ The installation includes several optimized choices:
 
 ## Usage
 
-1. Clone this repository
+1. Clone this repository locally, and review the `configuration.nix` and `hardware-configuration.nix`
 2. Boot your VPS into Rescue Mode
 3. Execute the installation script:
    ```bash
@@ -100,6 +100,7 @@ The installation includes several optimized choices:
    `hardware-configuration.nix`. Please find my current minimal config here:
    [configuration.nix](configuration.nix),
    [hardware-configuration.nix](hardware-configuration.nix).
+5. Once both files are edited, the script runs `nixos-install`.
 
 ## Post-Installation
 
