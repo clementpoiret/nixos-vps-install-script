@@ -1,16 +1,8 @@
 #!/bin/bash
 
-# Create and mount temporary Nix store
-mkdir /nix
-mount -t tmpfs tmpfs /nix -o size=5g
-
-# Create build users
-groupadd nixbld
-for n in $(seq 1 10); do useradd -c "Nix build user $n" -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(command -v nologin)" "nixbld$n"; done
-
-# Install Nix package manager
-bash <(curl -L https://nixos.org/nix/install)
-. $HOME/.nix-profile/etc/profile.d/nix.sh
+# PLEASE ENSURE YOU COPIED YOUR SSH KEY ON THE VPS
+curl --location https://github.com/nix-community/nixos-images/releases/download/nixos-22.11/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz | tar -C /root -xvzf-
+/root/kexec/run
 
 # Add and update channels
 nix-channel --add https://nixos.org/channels/nixos-24.11 nixpkgs
@@ -20,6 +12,7 @@ nix-channel --update
 nix-env -iA nixpkgs.nixos-install-tools
 
 # Partition the disk
+nix-env -iA nixpkgs.gptfdisk
 sgdisk --zap-all /dev/sda
 parted /dev/sda -- mklabel msdos
 parted /dev/sda -- mkpart primary 2048s 1G
@@ -50,8 +43,9 @@ mount /dev/sda1 /mnt/boot
 nixos-generate-config --root /mnt
 
 # Edit configuration files
-vi /mnt/etc/nixos/configuration.nix
-vi /mnt/etc/nixos/hardware-configuration.nix
+nix-env -iA nixpkgs.vim
+vim /mnt/etc/nixos/configuration.nix
+vim /mnt/etc/nixos/hardware-configuration.nix
 
 # Install NixOS and reboot
 nixos-install
