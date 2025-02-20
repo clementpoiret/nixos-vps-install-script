@@ -13,11 +13,11 @@ bash <(curl -L https://nixos.org/nix/install)
 . $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Add and update channels
-nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
+nix-channel --add https://nixos.org/channels/nixos-24.11 nixpkgs
 nix-channel --update
 
 # Install NixOS installation tools
-nix-env -iA nixos.nixos-install-tools
+nix-env -iA nixpkgs.nixos-install-tools
 
 # Partition the disk
 sgdisk --zap-all /dev/sda
